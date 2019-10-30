@@ -7,8 +7,72 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Calculator</title>
     <style>
+        body {
+            text-align: center;
+            background: url(cal.jpg) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+
+        /* #ac {
+            width: 95px;
+        } */
+
+        div {
+            display: table;
+            width: 100%;
+            text-align: center
+        }
+
+        div>div {
+            width: 500px;
+            display: table-row;
+        }
+
+        input {
+            width: 100px;
+            height: 100px;
+            font-size: 50px;
+            background-color: bisque;
+
+        }
+
+        #display {
+            width: 395px;
+            height: 50px;
+            background-color: dimgray;
+            color: aliceblue
+        }
+
         #ac {
-            width: 22%;
+            width: 400px;
+            color: red;
+        }
+
+        #history {
+            width: 400px;
+            height: 200px;
+            display: table-row;
+            font-size: 30px;
+            background-color: darksalmon;
+            color: yellow
+        }
+
+        .num {
+            color: blue
+        }
+
+        .op {
+            color: green
+        }
+        #history-text{
+            height: 20px; width: 400px;
+            background-color: rgba(233, 150, 122, 0.568);
+            font-size: 20px;
+            text-align: center;
+            border-bottom-color: darksalmon; border-right-color: darksalmon;
         }
     </style>
 </head>
@@ -16,71 +80,39 @@
 <body>
     <div>
         <div>
-            <input type="text" id="display">
+            <input type="text" id="display" disabled>
         </div>
         <div>
-            <div>
-                <input type="button" id="ac" value="C" onclick="click1('clear')">
-            </div>
-            <span>
-                <input type="button" value="1" onclick="click1(1)">
-            </span>
-            <span>
-                <input type="button" value="2" onclick="click1(2)">
-            </span>
-            <span>
-                <input type="button" value="3" onclick="click1(3)">
-            </span>
-            <span>
-                <input type="button" value="+" onclick="click1('+')">
-            </span>
+            <input type="button" id="ac" value="C" onclick="click1('clear')">
         </div>
         <div>
-            <span>
-                <input type="button" value="4" onclick="click1(4)">
-            </span>
-            <span>
-                <input type="button" value="5" onclick="click1(5)">
-            </span>
-            <span>
-                <input type="button" value="6" onclick="click1(6)">
-            </span>
-            <span>
-                <input type="button" value="-" onclick="click1('-')">
-            </span>
+            <input type="button" value="1" class="num" onclick="click1(1)">
+            <input type="button" value="2" class="num" onclick="click1(2)">
+            <input type="button" value="3" class="num" onclick="click1(3)">
+            <input type="button" value="+" class="op" onclick="click1('+')">
         </div>
         <div>
-            <span>
-                <input type="button" value="7" onclick="click1(7)">
-            </span>
-            <span>
-                <input type="button" value="8" onclick="click1(8)">
-            </span>
-            <span>
-                <input type="button" value="9" onclick="click1(9)">
-            </span>
-            <span>
-                <input type="button" value="*" onclick="click1('*')">
-            </span>
+            <input type="button" value="4" class="num" onclick="click1(4)">
+            <input type="button" value="5" class="num" onclick="click1(5)">
+            <input type="button" value="6" class="num" onclick="click1(6)">
+            <input type="button" value="-" class="op" onclick="click1('-')">
         </div>
         <div>
-            <span>
-                <input type="button" value="^" onclick="click1('^')">
-            </span>
-            <span>
-                <input type="button" value="0" onclick="click1(0)">
-            </span>
-            <span>
-                <input type="button" value="=" onclick="equel()">
-            </span>
-            <span>
-                <input type="button" value="/" onclick="click1('/')">
-            </span>
+            <input type="button" value="7" class="num" onclick="click1(7)">
+            <input type="button" value="8" class="num" onclick="click1(8)">
+            <input type="button" value="9" class="num" onclick="click1(9)">
+            <input type="button" value="*" class="op" onclick="click1('*')">
         </div>
         <div>
-            History:
+            <input type="button" value="^" class="op" onclick="click1('^')">
+            <input type="button" value="0" class="num" onclick="click1(0)">
+            <input type="button" value="=" class="op" onclick="equel()">
+            <input type="button" value="/" class="op" onclick="click1('/')">
+        </div>
+        <div>
+            <input type="text" id="history-text" value="History:" disabled>
             <br>
-            <textarea name="" id="history" cols="30" rows="10"></textarea>
+            <textarea type="text" name="History" id="history" disabled></textarea>
         </div>
     </div>
     <script>
@@ -139,6 +171,7 @@
                 }
             }
             h = document.getElementById('display').value += '=' + tot
+            console.log(h)
             document.getElementById("history").value += h + "; "
             tot = 0
             dis = []
